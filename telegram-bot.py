@@ -19,7 +19,7 @@ def start(update: Update, context: CallbackContext):
 
 # Help command
 def help_command(update: Update, context: CallbackContext):
-    help_text = List of Commands:
+    help_text = """List of Commands:
 /start - Welcome message
 /help - Command list
 /convert - Convert text to audio
