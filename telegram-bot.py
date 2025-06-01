@@ -13,17 +13,13 @@ user_settings = {}
 murf_client = Murf(api_key=API_KEY)
 
 def start(update: Update, context: CallbackContext):
-    update.message.reply_text("👋 Welcome to SunoDirect Bot!\nUse /help to see available commands.")
+    update.message.reply_text("Welcome to SunoDirect!")
 
 def help_command(update: Update, context: CallbackContext):
-    help_text = """🛠 *SunoDirect Commands*:
+    help_text = """*List of Commands*:
 /start — Welcome
 /help — All commands
-/convert <text> — Convert text to audio
-/language <code> — Set language
-/voice <name> — Choose voice
-/settings — View settings
-/about — Bot info
+/convert — Convert text to audio
 /stop — Stop audio"""
     update.message.reply_text(help_text, parse_mode='Markdown')
 
@@ -51,7 +47,7 @@ def convert(update: Update, context: CallbackContext):
         except Exception as e:
             update.message.reply_text(f"❌ Error: {str(e)}")
     else:
-        update.message.reply_text("❗ Example: /convert Hello world")
+        update.message.reply_text("❗ Example: SunoDirect")
 
 def set_language(update: Update, context: CallbackContext):
     update.message.reply_text("🌐 Language change not supported directly. Use /voice instead.")
@@ -85,10 +81,6 @@ def main():
     dp.add_handler(CommandHandler("start", start))
     dp.add_handler(CommandHandler("help", help_command))
     dp.add_handler(CommandHandler("convert", convert))
-    dp.add_handler(CommandHandler("language", set_language))
-    dp.add_handler(CommandHandler("voice", set_voice))
-    dp.add_handler(CommandHandler("settings", settings))
-    dp.add_handler(CommandHandler("about", about))
     dp.add_handler(CommandHandler("stop", stop))
 
     updater.start_polling()
